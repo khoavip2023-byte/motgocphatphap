@@ -21,7 +21,10 @@ if not books_dir.is_dir():
 
 # Lấy trang chủ và các ebook HTML
 pages = [index_file]
-pages.extend(sorted(books_dir.glob("*.html")))
+pages.extend(
+    page for page in sorted(books_dir.glob("*.html"))
+    if page.name != "template.html"
+)
 
 # Tạo sitemap XML
 namespace = "http://www.sitemaps.org/schemas/sitemap/0.9"
